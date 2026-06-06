@@ -1,0 +1,41 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'product_list' %}">Home</a></li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-5">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" class="img-fluid rounded shadow">
+        {% else %}
+        <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height:350px;">
+            <i class="bi bi-image text-white" style="font-size:4rem;"></i>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-7">
+        <span class="badge bg-secondary mb-2">{{ product.category.name }}</span>
+        <h2 class="fw-bold">{{ product.name }}</h2>
+        <h3 class="text-success">${{ product.price }}</h3>
+        <hr>
+        <p>{{ product.description }}</p>
+        <p class="text-muted">
+            <i class="bi bi-box"></i>
+            {% if product.stock > 0 %}
+            <span class="text-success">In Stock ({{ product.stock }} available)</span>
+            {% else %}
+            <span class="text-danger">Out of Stock</span>
+            {% endif %}
+        </p>
+        <div class="d-flex gap-3 mt-4">
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-dark btn-lg">
+                <i class="bi bi-cart-plus"></i> Add to Cart
+            </a>
+            <a href="{% url 'product_list' %}" class="btn btn-outline-secondary btn-lg">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
