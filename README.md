@@ -22,3 +22,6 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+
+## Screenshots
+![Home Page](https://github.com/user-attachments/assets/4ccbb634-7f14-416b-bcf5-c13a31b946dc)
